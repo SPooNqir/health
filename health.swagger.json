@@ -1,0 +1,247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Spoon - Robot Health WS",
+    "version": "0.0.1",
+    "contact": {
+      "name": "Spoon Cloud Team",
+      "url": "https://gitlab.com/SpoonQIR/Cloud/services/robot-health",
+      "email": "sebastien.lavayssiere@spoon.ai"
+    }
+  },
+  "tags": [
+    {
+      "name": "health"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/robots/health": {
+      "get": {
+        "operationId": "health_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Health"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {
+              "$ref": ".grpc.gateway.examples.internal.proto.examplepb.NumericEnum"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "datatype",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "lastData",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "testActivity",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "testConnected",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "error",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/v1/robots/health/logs": {
+      "get": {
+        "operationId": "health_GetLogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Logs"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {}
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          },
+          "418": {
+            "description": "I'm a teapot.",
+            "schema": {
+              "$ref": ".grpc.gateway.examples.internal.proto.examplepb.NumericEnum"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "logs",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "health"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1Health": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "datatype": {
+          "type": "string"
+        },
+        "lastData": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "testActivity": {
+          "type": "boolean"
+        },
+        "testConnected": {
+          "type": "boolean"
+        },
+        "error": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1Logs": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "externalDocs": {
+    "description": "link for docs",
+    "url": "https://gitlab.com/SpoonQIR/Cloud/services/robot-health"
+  }
+}
