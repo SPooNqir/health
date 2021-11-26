@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package v1;
+package health;
 
-option go_package = ".;v1";
+option go_package = "github.com/slavayssiere-spoon/health";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";

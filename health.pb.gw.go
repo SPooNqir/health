@@ -2,11 +2,11 @@
 // source: health.proto
 
 /*
-Package v1 is a reverse proxy.
+Package health is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package v1
+package health
 
 import (
 	"context"
@@ -115,7 +115,7 @@ func RegisterHealthHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/v1.Health/Get", runtime.WithHTTPPathPattern("/v1/robots/health"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/health.Health/Get", runtime.WithHTTPPathPattern("/v1/robots/health"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -138,7 +138,7 @@ func RegisterHealthHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/v1.Health/GetLogs", runtime.WithHTTPPathPattern("/v1/robots/health/logs"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/health.Health/GetLogs", runtime.WithHTTPPathPattern("/v1/robots/health/logs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -200,7 +200,7 @@ func RegisterHealthHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/v1.Health/Get", runtime.WithHTTPPathPattern("/v1/robots/health"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/health.Health/Get", runtime.WithHTTPPathPattern("/v1/robots/health"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -220,7 +220,7 @@ func RegisterHealthHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/v1.Health/GetLogs", runtime.WithHTTPPathPattern("/v1/robots/health/logs"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/health.Health/GetLogs", runtime.WithHTTPPathPattern("/v1/robots/health/logs"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
