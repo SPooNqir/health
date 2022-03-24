@@ -1,17 +1,17 @@
-module github.com/slavayssiere-spoon/health
+module github.com/SPooNqir/health
 
 go 1.17
 
 require (
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.7.0
-	google.golang.org/genproto v0.0.0-20211118181313-81c1377c94b1
-	google.golang.org/grpc v1.42.0
-	google.golang.org/protobuf v1.27.1
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
+	google.golang.org/genproto v0.0.0-20220323144105-ec3c684e5b14
+	google.golang.org/grpc v1.45.0
+	google.golang.org/protobuf v1.28.0
 )
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect
-	golang.org/x/net v0.0.0-20211123203042-d83791d6bcd9 // indirect
-	golang.org/x/sys v0.0.0-20211124211545-fe61309f8881 // indirect
+	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
+	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )

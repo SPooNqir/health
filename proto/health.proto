@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package health;
 
-option go_package = "github.com/slavayssiere-spoon/health";
+option go_package = "github.com/SPooNqir/health";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
